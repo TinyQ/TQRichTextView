@@ -1,14 +1,15 @@
 //
-//  TQRichTextRunBase.h
+//  TQRichTextBaseRun.h
 //  TQRichTextViewDemo
 //
-//  Created by fuqiang on 13-9-17.
+//  Created by fuqiang on 13-9-21.
 //  Copyright (c) 2013年 fuqiang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface TQRichTextRunBase : NSObject
+
+@interface TQRichTextBaseRun : NSObject
 
 //-- 原始文本
 @property (nonatomic,copy) NSString *originalText;

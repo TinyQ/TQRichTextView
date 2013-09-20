@@ -8,7 +8,7 @@
 
 #import "TQRichTextView.h"
 #import <CoreText/CoreText.h>
-#import "TQRichTextRunEmoji.h"
+#import "TQRichTextEmojiRun.h"
 
 @implementation TQRichTextView
 
@@ -41,7 +41,7 @@
     [attString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)self.textColor.CGColor range:NSMakeRange(0,attString.length)];
     
     //文本处理
-    for (TQRichTextRunBase *textRun in self.richTextRunsArray)
+    for (TQRichTextBaseRun *textRun in self.richTextRunsArray)
     {
         [textRun replaceTextWithAttributedString:attString];
     }
@@ -96,17 +96,21 @@ goto check;
         for (int j = 0; j < CFArrayGetCount(runs); j++)
         {
             CTRunRef run = CFArrayGetValueAtIndex(runs, j);
-            CGFloat runAscent,runDescent;
-            CGFloat runWidth  = CTRunGetTypographicBounds(run, CFRangeMake(0,0), &runAscent, &runDescent, NULL);
-            CGFloat runHeight = runAscent + (-runDescent);
-            CGFloat runPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
-            CGFloat runPointY = drawLineY - (-runDescent);
-            
-            CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
-            
             NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
-            TQRichTextRunBase *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
-            [textRun drawRunWithRect:runRect];
+            
+            TQRichTextBaseRun *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
+            
+            if (textRun)
+            {
+                CGFloat runAscent,runDescent;
+                CGFloat runWidth  = CTRunGetTypographicBounds(run, CFRangeMake(0,0), &runAscent, &runDescent, NULL);
+                CGFloat runHeight = runAscent + (-runDescent);
+                CGFloat runPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
+                CGFloat runPointY = drawLineY - (-runDescent);
+                
+                CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
+                [textRun drawRunWithRect:runRect];
+            }
         }
         
         CFRelease(line);
@@ -137,17 +141,20 @@ goto check;
 //-- 解析文本内容
 - (NSString *)analyzeText:(NSString *)string
 {
-    for (int i = 0; i < string.length; i++)
+    int k = 2;
+    
+    for (int i = 0; i < string.length; i+=k)
     {
-        NSString *s = [string substringWithRange:NSMakeRange(i, 1)];
-        if ([s isEqualToString:@"＋"])
+        NSString *s = [string substringWithRange:NSMakeRange(i, k)];
+        NSLog(@"%@",s);
+        if ([s isEqualToString:@"＋＋"])
         {
-            NSRange range = NSMakeRange(i, 1);
-            string = [string stringByReplacingCharactersInRange:range withString:@" "];
+            NSRange range = NSMakeRange(i, k);
+            string = [string stringByReplacingCharactersInRange:range withString:@"  "];
             
-            TQRichTextRunEmoji *emoji = [[TQRichTextRunEmoji alloc] init];
+            TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
             emoji.range = range;
-            emoji.originalText = @"+";
+            emoji.originalText = @"＋＋";
             emoji.originalFont = self.font;
             [self.richTextRunsArray addObject:emoji];
         }

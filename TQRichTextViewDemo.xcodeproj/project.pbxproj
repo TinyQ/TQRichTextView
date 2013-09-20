@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		589499A617E84822008F44FD /* TQRichTextRunBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 589499A517E84822008F44FD /* TQRichTextRunBase.m */; };
 		589499A817E8543D008F44FD /* jietu.png in Resources */ = {isa = PBXBuildFile; fileRef = 589499A717E8543C008F44FD /* jietu.png */; };
-		589499AB17E8583E008F44FD /* TQRichTextRunEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 589499AA17E8583E008F44FD /* TQRichTextRunEmoji.m */; };
 		589D3A1A17E1A2C100B914A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D3A1917E1A2C100B914A3 /* UIKit.framework */; };
 		589D3A1C17E1A2C100B914A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D3A1B17E1A2C100B914A3 /* Foundation.framework */; };
 		589D3A1E17E1A2C100B914A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D3A1D17E1A2C100B914A3 /* CoreGraphics.framework */; };
@@ -44,14 +42,13 @@
 		589D3A6C17E1C56F00B914A3 /* unhappy.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A5617E1C56F00B914A3 /* unhappy.png */; };
 		589D3A6D17E1C56F00B914A3 /* what.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A5717E1C56F00B914A3 /* what.png */; };
 		589D3A6E17E1C56F00B914A3 /* wicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A5817E1C56F00B914A3 /* wicked.png */; };
+		589E598D17ECE11C00C55D1C /* TQRichTextBaseRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E598C17ECE11C00C55D1C /* TQRichTextBaseRun.m */; };
+		589E599017ECE1A800C55D1C /* TQRichTextImageRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E598F17ECE1A800C55D1C /* TQRichTextImageRun.m */; };
+		589E599317ECE29800C55D1C /* TQRichTextEmojiRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E599217ECE29800C55D1C /* TQRichTextEmojiRun.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		589499A417E84821008F44FD /* TQRichTextRunBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunBase.h; sourceTree = "<group>"; };
-		589499A517E84822008F44FD /* TQRichTextRunBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunBase.m; sourceTree = "<group>"; };
 		589499A717E8543C008F44FD /* jietu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jietu.png; sourceTree = "<group>"; };
-		589499A917E8583E008F44FD /* TQRichTextRunEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunEmoji.h; sourceTree = "<group>"; };
-		589499AA17E8583E008F44FD /* TQRichTextRunEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunEmoji.m; sourceTree = "<group>"; };
 		589D3A1617E1A2C100B914A3 /* TQRichTextViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TQRichTextViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		589D3A1917E1A2C100B914A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		589D3A1B17E1A2C100B914A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,6 +89,12 @@
 		589D3A5617E1C56F00B914A3 /* unhappy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unhappy.png; sourceTree = "<group>"; };
 		589D3A5717E1C56F00B914A3 /* what.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = what.png; sourceTree = "<group>"; };
 		589D3A5817E1C56F00B914A3 /* wicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wicked.png; sourceTree = "<group>"; };
+		589E598B17ECE11C00C55D1C /* TQRichTextBaseRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextBaseRun.h; sourceTree = "<group>"; };
+		589E598C17ECE11C00C55D1C /* TQRichTextBaseRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextBaseRun.m; sourceTree = "<group>"; };
+		589E598E17ECE1A800C55D1C /* TQRichTextImageRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextImageRun.h; sourceTree = "<group>"; };
+		589E598F17ECE1A800C55D1C /* TQRichTextImageRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextImageRun.m; sourceTree = "<group>"; };
+		589E599117ECE29800C55D1C /* TQRichTextEmojiRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextEmojiRun.h; sourceTree = "<group>"; };
+		589E599217ECE29800C55D1C /* TQRichTextEmojiRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextEmojiRun.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,10 +171,12 @@
 			isa = PBXGroup;
 			children = (
 				589D3A4217E1C56F00B914A3 /* EmojiImage */,
-				589499A417E84821008F44FD /* TQRichTextRunBase.h */,
-				589499A517E84822008F44FD /* TQRichTextRunBase.m */,
-				589499A917E8583E008F44FD /* TQRichTextRunEmoji.h */,
-				589499AA17E8583E008F44FD /* TQRichTextRunEmoji.m */,
+				589E598B17ECE11C00C55D1C /* TQRichTextBaseRun.h */,
+				589E598C17ECE11C00C55D1C /* TQRichTextBaseRun.m */,
+				589E598E17ECE1A800C55D1C /* TQRichTextImageRun.h */,
+				589E598F17ECE1A800C55D1C /* TQRichTextImageRun.m */,
+				589E599117ECE29800C55D1C /* TQRichTextEmojiRun.h */,
+				589E599217ECE29800C55D1C /* TQRichTextEmojiRun.m */,
 				589D3A3D17E1A30600B914A3 /* TQRichTextView.h */,
 				589D3A3E17E1A30600B914A3 /* TQRichTextView.m */,
 			);
@@ -297,12 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				589E599317ECE29800C55D1C /* TQRichTextEmojiRun.m in Sources */,
 				589D3A2617E1A2C100B914A3 /* main.m in Sources */,
 				589D3A2A17E1A2C100B914A3 /* TQAppDelegate.m in Sources */,
+				589E599017ECE1A800C55D1C /* TQRichTextImageRun.m in Sources */,
+				589E598D17ECE11C00C55D1C /* TQRichTextBaseRun.m in Sources */,
 				589D3A3317E1A2C100B914A3 /* TQViewController.m in Sources */,
 				589D3A3F17E1A30600B914A3 /* TQRichTextView.m in Sources */,
-				589499A617E84822008F44FD /* TQRichTextRunBase.m in Sources */,
-				589499AB17E8583E008F44FD /* TQRichTextRunEmoji.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

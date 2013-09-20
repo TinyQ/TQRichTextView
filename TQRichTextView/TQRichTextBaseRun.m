@@ -1,19 +1,19 @@
 //
-//  TQRichTextRunBase.m
+//  TQRichTextBaseRun.m
 //  TQRichTextViewDemo
 //
-//  Created by fuqiang on 13-9-17.
+//  Created by fuqiang on 13-9-21.
 //  Copyright (c) 2013年 fuqiang. All rights reserved.
 //
 
-#import "TQRichTextRunBase.h"
+#import "TQRichTextBaseRun.h"
 
-@implementation TQRichTextRunBase
+@implementation TQRichTextBaseRun
 
 //-- 替换基础文本
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString
 {
-
+    
 }
 
 //-- 绘制内容
