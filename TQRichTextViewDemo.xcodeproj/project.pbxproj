@@ -20,7 +20,6 @@
 		589D3A2E17E1A2C100B914A3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A2D17E1A2C100B914A3 /* Default@2x.png */; };
 		589D3A3017E1A2C100B914A3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A2F17E1A2C100B914A3 /* Default-568h@2x.png */; };
 		589D3A3317E1A2C100B914A3 /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589D3A3217E1A2C100B914A3 /* TQViewController.m */; };
-		589D3A3617E1A2C100B914A3 /* TQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A3417E1A2C100B914A3 /* TQViewController.xib */; };
 		589D3A3F17E1A30600B914A3 /* TQRichTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 589D3A3E17E1A30600B914A3 /* TQRichTextView.m */; };
 		589D3A4117E1A90900B914A3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D3A4017E1A90900B914A3 /* CoreText.framework */; };
 		589D3A5917E1C56F00B914A3 /* bad_smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A4317E1C56F00B914A3 /* bad_smile.png */; };
@@ -68,7 +67,6 @@
 		589D3A2F17E1A2C100B914A3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		589D3A3117E1A2C100B914A3 /* TQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQViewController.h; sourceTree = "<group>"; };
 		589D3A3217E1A2C100B914A3 /* TQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQViewController.m; sourceTree = "<group>"; };
-		589D3A3517E1A2C100B914A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TQViewController.xib; sourceTree = "<group>"; };
 		589D3A3D17E1A30600B914A3 /* TQRichTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextView.h; sourceTree = "<group>"; };
 		589D3A3E17E1A30600B914A3 /* TQRichTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextView.m; sourceTree = "<group>"; };
 		589D3A4017E1A90900B914A3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -147,7 +145,6 @@
 				589D3A2917E1A2C100B914A3 /* TQAppDelegate.m */,
 				589D3A3117E1A2C100B914A3 /* TQViewController.h */,
 				589D3A3217E1A2C100B914A3 /* TQViewController.m */,
-				589D3A3417E1A2C100B914A3 /* TQViewController.xib */,
 				589D3A2017E1A2C100B914A3 /* Supporting Files */,
 			);
 			path = TQRichTextViewDemo;
@@ -267,7 +264,6 @@
 				589D3A2C17E1A2C100B914A3 /* Default.png in Resources */,
 				589D3A2E17E1A2C100B914A3 /* Default@2x.png in Resources */,
 				589D3A3017E1A2C100B914A3 /* Default-568h@2x.png in Resources */,
-				589D3A3617E1A2C100B914A3 /* TQViewController.xib in Resources */,
 				589D3A5917E1C56F00B914A3 /* bad_smile.png in Resources */,
 				589D3A5A17E1C56F00B914A3 /* beyond_endurance.png in Resources */,
 				589D3A5B17E1C56F00B914A3 /* big_smile.png in Resources */,
@@ -319,14 +315,6 @@
 				589D3A2317E1A2C100B914A3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		589D3A3417E1A2C100B914A3 /* TQViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				589D3A3517E1A2C100B914A3 /* en */,
-			);
-			name = TQViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

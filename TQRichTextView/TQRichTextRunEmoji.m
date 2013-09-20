@@ -70,7 +70,7 @@ CGFloat TQRichTextRunEmojiDelegateGetAscentCallback(void *refCon)
 CGFloat TQRichTextRunEmojiDelegateGetDescentCallback(void *refCon)
 {
     TQRichTextRunEmoji *run =(__bridge TQRichTextRunEmoji *) refCon;
-    return -run.originalFont.descender * 1.2;
+    return run.originalFont.descender * 1.2;
 }
 
 //-- 宽

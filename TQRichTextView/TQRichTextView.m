@@ -19,6 +19,7 @@
         _text = @"";
         _font = [UIFont systemFontOfSize:12.0];
         _textColor = [UIColor blackColor];
+        _lineSpacing = 1.0;
         //
         _richTextRunsArray = [[NSMutableArray alloc] init];
         _textAnalyzed = [self analyzeText:_text];
@@ -28,78 +29,45 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [super drawRect:rect];
-    //
-    CGRect viewRect = self.bounds;
-    int textLength  = self.textAnalyzed.length;
-    NSString *drawText  = self.textAnalyzed;
-    
-    //绘图上下文
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    //修正坐标系    
-    CGAffineTransform textTran = CGAffineTransformIdentity;
-    textTran = CGAffineTransformMakeTranslation(0.0, viewRect.size.height);
-    textTran = CGAffineTransformScale(textTran, 1.0, -1.0);
-    CGContextConcatCTM(context, textTran);
-
     //要绘制的文本
-    NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] initWithString:drawText];
-    
-    //换行模式
-    CTLineBreakMode lineBreakMode = kCTLineBreakByCharWrapping;
-    //对齐方式
-    CTTextAlignment alignment = kCTLeftTextAlignment;
-    //行间距
-    float lineSpacing = 1.0;
-    CTParagraphStyleSetting paraStyles[3] =
-    {
-        {.spec = kCTParagraphStyleSpecifierLineBreakMode,.valueSize = sizeof(CTLineBreakMode),.value = (const void*)&lineBreakMode},
-        
-        {.spec = kCTParagraphStyleSpecifierAlignment,.valueSize = sizeof(CTTextAlignment),.value = (const void*)&alignment},
-        
-        {.spec = kCTParagraphStyleSpecifierLineSpacing,.valueSize = sizeof(CGFloat),.value = (const void*)&lineSpacing},
-    };
-    //设置段落样式
-    CTParagraphStyleRef style = CTParagraphStyleCreate(paraStyles,3);
-    [attString addAttribute:(NSString*)(kCTParagraphStyleAttributeName) value:(__bridge id)style range:NSMakeRange(0,textLength)];
-    CFRelease(style);
-    
+    NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] initWithString:self.textAnalyzed];
+
     //设置字体
     CTFontRef aFont = CTFontCreateWithName((__bridge CFStringRef)self.font.fontName, self.font.pointSize, NULL);
-    [attString addAttribute:(NSString*)kCTFontAttributeName value:(__bridge id)aFont range:NSMakeRange(0,textLength)];
+    [attString addAttribute:(NSString*)kCTFontAttributeName value:(__bridge id)aFont range:NSMakeRange(0,attString.length)];
     CFRelease(aFont);
     
     //设置颜色
-    [attString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)self.textColor.CGColor range:NSMakeRange(0,textLength)];
+    [attString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)self.textColor.CGColor range:NSMakeRange(0,attString.length)];
     
     //文本处理
     for (TQRichTextRunBase *textRun in self.richTextRunsArray)
     {
         [textRun replaceTextWithAttributedString:attString];
     }
-    
-    //绘制
 
-    //设置行高
-    float lineHeight = self.font.ascender - self.font.descender;
-    //是否绘制
-    BOOL drawFlag = YES;
-    //行数
+    //绘图上下文
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //修正坐标系
+    CGAffineTransform textTran = CGAffineTransformIdentity;
+    textTran = CGAffineTransformMakeTranslation(0.0, self.bounds.size.height);
+    textTran = CGAffineTransformScale(textTran, 1.0, -1.0);
+    CGContextConcatCTM(context, textTran);
+
+    //绘制
     int lineCount = 0;
-    //绘制计数
-    CFIndex currentIndex = 0;
-    
+    CFRange lineRange = CFRangeMake(0,0);
     CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attString);
+    float drawLineX = 0;
+    float drawLineY = self.bounds.origin.y + self.bounds.size.height - self.font.ascender;
     
-    float x = 0;
-    float y = self.bounds.origin.y + self.bounds.size.height - self.font.ascender;
+    BOOL drawFlag = YES;
     
     while(drawFlag)
     {
-        CFIndex lineLength = CTTypesetterSuggestLineBreak(typeSetter,currentIndex,self.bounds.size.width);
-        check:;
-        CFRange lineRange = CFRangeMake(currentIndex,lineLength);
+        CFIndex testLineLength = CTTypesetterSuggestLineBreak(typeSetter,lineRange.location,self.bounds.size.width);
+check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
         CTLineRef line = CTTypesetterCreateLine(typeSetter,lineRange);
         CFArrayRef runs = CTLineGetGlyphRuns(line);
         
@@ -108,56 +76,51 @@
         CGFloat lastRunAscent;
         CGFloat laseRunDescent;
         CGFloat lastRunWidth  = CTRunGetTypographicBounds(lastRun, CFRangeMake(0,0), &lastRunAscent, &laseRunDescent, NULL);
-        CGFloat lastRunPointX = x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(lastRun).location, NULL);
+        CGFloat lastRunPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(lastRun).location, NULL);
         
         if ((lastRunWidth + lastRunPointX) > self.bounds.size.width)
         {
-            lineLength--;
-            goto check;
+            testLineLength--;
+            CFRelease(line);
+goto check;
         }
         
         //--
-        x = CTLineGetPenOffsetForFlush(line,0,self.bounds.size.width);
+        drawLineX = CTLineGetPenOffsetForFlush(line,0,self.bounds.size.width);
         
-        CGContextSetTextPosition(context,x,y);
+        CGContextSetTextPosition(context,drawLineX,drawLineY);
         
         CTLineDraw(line,context);
         
         //绘制run
         for (int j = 0; j < CFArrayGetCount(runs); j++)
         {
-            
             CTRunRef run = CFArrayGetValueAtIndex(runs, j);
-            
-            CGFloat runAscent;
-            CGFloat runDescent;
-            
-            NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
-            
+            CGFloat runAscent,runDescent;
             CGFloat runWidth  = CTRunGetTypographicBounds(run, CFRangeMake(0,0), &runAscent, &runDescent, NULL);
-            CGFloat runHeight = runAscent + runDescent;
-            CGFloat runPointX = x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
-            CGFloat runPointY = y - runDescent;
+            CGFloat runHeight = runAscent + (-runDescent);
+            CGFloat runPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
+            CGFloat runPointY = drawLineY - (-runDescent);
             
             CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
             
+            NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
             TQRichTextRunBase *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
-            
             [textRun drawRunWithRect:runRect];
         }
         
         CFRelease(line);
         
-        if(currentIndex + lineLength >= textLength)
+        if(lineRange.location + lineRange.length >= attString.length)
         {
             drawFlag = NO;
         }
 
         lineCount++;
         
-        y -= lineHeight + lineSpacing;
+        drawLineY -= self.font.ascender + (- self.font.descender) + self.lineSpacing;
         
-        currentIndex += lineLength;
+        lineRange.location += lineRange.length;
     }
     
     CFRelease(typeSetter);
