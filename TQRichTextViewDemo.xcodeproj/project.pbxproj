@@ -20,7 +20,7 @@
 		589D3A3317E1A2C100B914A3 /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589D3A3217E1A2C100B914A3 /* TQViewController.m */; };
 		589D3A3F17E1A30600B914A3 /* TQRichTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 589D3A3E17E1A30600B914A3 /* TQRichTextView.m */; };
 		589D3A4117E1A90900B914A3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D3A4017E1A90900B914A3 /* CoreText.framework */; };
-		589D3A5B17E1C56F00B914A3 /* big_smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A4517E1C56F00B914A3 /* big_smile.png */; };
+		589D3A5B17E1C56F00B914A3 /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A4517E1C56F00B914A3 /* smile.png */; };
 		589D3A5C17E1C56F00B914A3 /* cry.png in Resources */ = {isa = PBXBuildFile; fileRef = 589D3A4617E1C56F00B914A3 /* cry.png */; };
 		589E598D17ECE11C00C55D1C /* TQRichTextBaseRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E598C17ECE11C00C55D1C /* TQRichTextBaseRun.m */; };
 		589E599017ECE1A800C55D1C /* TQRichTextImageRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E598F17ECE1A800C55D1C /* TQRichTextImageRun.m */; };
@@ -47,7 +47,7 @@
 		589D3A3D17E1A30600B914A3 /* TQRichTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextView.h; sourceTree = "<group>"; };
 		589D3A3E17E1A30600B914A3 /* TQRichTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextView.m; sourceTree = "<group>"; };
 		589D3A4017E1A90900B914A3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		589D3A4517E1C56F00B914A3 /* big_smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_smile.png; sourceTree = "<group>"; };
+		589D3A4517E1C56F00B914A3 /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		589D3A4617E1C56F00B914A3 /* cry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cry.png; sourceTree = "<group>"; };
 		589E598B17ECE11C00C55D1C /* TQRichTextBaseRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextBaseRun.h; sourceTree = "<group>"; };
 		589E598C17ECE11C00C55D1C /* TQRichTextBaseRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextBaseRun.m; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				589499A717E8543C008F44FD /* jietu.png */,
-				589D3A4517E1C56F00B914A3 /* big_smile.png */,
+				589D3A4517E1C56F00B914A3 /* smile.png */,
 				589D3A4617E1C56F00B914A3 /* cry.png */,
 			);
 			path = EmojiImage;
@@ -209,7 +209,7 @@
 				589D3A2C17E1A2C100B914A3 /* Default.png in Resources */,
 				589D3A2E17E1A2C100B914A3 /* Default@2x.png in Resources */,
 				589D3A3017E1A2C100B914A3 /* Default-568h@2x.png in Resources */,
-				589D3A5B17E1C56F00B914A3 /* big_smile.png in Resources */,
+				589D3A5B17E1C56F00B914A3 /* smile.png in Resources */,
 				589D3A5C17E1C56F00B914A3 /* cry.png in Resources */,
 				589499A817E8543D008F44FD /* jietu.png in Resources */,
 			);
