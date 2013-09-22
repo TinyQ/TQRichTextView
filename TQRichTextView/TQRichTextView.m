@@ -93,9 +93,9 @@ goto check;
         CTLineDraw(line,context);
         
         //绘制run
-        for (int j = 0; j < CFArrayGetCount(runs); j++)
+        for (int i = 0; i < CFArrayGetCount(runs); i++)
         {
-            CTRunRef run = CFArrayGetValueAtIndex(runs, j);
+            CTRunRef run = CFArrayGetValueAtIndex(runs, i);
             NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
             
             TQRichTextBaseRun *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
@@ -141,27 +141,31 @@ goto check;
 //-- 解析文本内容
 - (NSString *)analyzeText:(NSString *)string
 {
-    int k = 2;
+    NSString *result = @"";
     
-    for (int i = 0; i < string.length; i+=k)
-    {
-        NSString *s = [string substringWithRange:NSMakeRange(i, k)];
-        NSLog(@"%@",s);
-        if ([s isEqualToString:@"＋＋"])
-        {
-            NSRange range = NSMakeRange(i, k);
-            string = [string stringByReplacingCharactersInRange:range withString:@"  "];
-            
-            TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
-            emoji.range = range;
-            emoji.originalText = @"＋＋";
-            emoji.originalFont = self.font;
-            [self.richTextRunsArray addObject:emoji];
-        }
-    }
+    NSMutableArray *array = self.richTextRunsArray;
     
-    return [string copy]; 
+    result = [TQRichTextEmojiRun analyzeText:string runsArray:&array];
+    
+    [self.richTextRunsArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:self.font];
+    
+    return result;
 }
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,4 +11,6 @@
 
 @interface TQRichTextEmojiRun : TQRichTextImageRun
 
++ (NSString *)analyzeText:(NSString *)string runsArray:(NSMutableArray **)array;
+
 @end
