@@ -152,7 +152,6 @@ goto check;
     return result;
 }
 
-
 @end
 
 
