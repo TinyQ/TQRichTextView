@@ -9,6 +9,7 @@
 #import "TQRichTextView.h"
 #import <CoreText/CoreText.h>
 #import "TQRichTextEmojiRun.h"
+#import "TQRichTextURLRun.h"
 
 @implementation TQRichTextView
 
@@ -146,6 +147,8 @@ goto check;
     NSMutableArray *array = self.richTextRunsArray;
     
     result = [TQRichTextEmojiRun analyzeText:string runsArray:&array];
+    
+    result = [TQRichTextURLRun analyzeText:result runsArray:&array];
     
     [self.richTextRunsArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:self.font];
     

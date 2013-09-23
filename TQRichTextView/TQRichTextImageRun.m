@@ -22,6 +22,7 @@
     emojiCallbacks.getAscent    = TQRichTextRunEmojiDelegateGetAscentCallback;
     emojiCallbacks.getDescent   = TQRichTextRunEmojiDelegateGetDescentCallback;
     emojiCallbacks.getWidth     = TQRichTextRunEmojiDelegateGetWidthCallback;
+
     
     NSMutableAttributedString *imageAttributedString = [[NSMutableAttributedString alloc] initWithString:@" "];
     
@@ -59,7 +60,7 @@ CGFloat TQRichTextRunEmojiDelegateGetDescentCallback(void *refCon)
 CGFloat TQRichTextRunEmojiDelegateGetWidthCallback(void *refCon)
 {
     TQRichTextImageRun *run =(__bridge TQRichTextImageRun *) refCon;
-    return (run.originalFont.ascender - run.originalFont.descender) * 1.2;// / run.range.length;
+    return (run.originalFont.ascender - run.originalFont.descender) * 1.2;
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreText/CoreText.h>
 
 @interface TQRichTextBaseRun : NSObject
 

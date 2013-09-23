@@ -94,25 +94,7 @@
             [newString appendString:s];
         }
     }
-    
-    //http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?
-//^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$
-    
-//    NSError *error;
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\[.*?|]" options:NSRegularExpressionCaseInsensitive error:&error];
-//    
-//    NSArray *arrayOfAllMatches = [regex matchesInString:string options:0 range:NSMakeRange(0, [string length])];
-//    
-//    NSMutableArray *arrayOfURLs = [[NSMutableArray alloc] init];
-//    
-//    for (NSTextCheckingResult *match in arrayOfAllMatches)
-//    {
-//        NSString* substringForMatch = [string substringWithRange:match.range];
-//        NSLog(@"Extracted URL: %@",substringForMatch);
-//        
-//        [arrayOfURLs addObject:substringForMatch];
-//    }
-    
+
     return newString;
 }
 
