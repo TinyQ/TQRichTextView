@@ -14,7 +14,7 @@
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attString
 {
     //删除替换的占位字符
-    [attString deleteCharactersInRange:self.range];
+    [attString deleteCharactersInRange:NSMakeRange(self.range.location, 1)];
     
     CTRunDelegateCallbacks emojiCallbacks;
     emojiCallbacks.version      = kCTRunDelegateVersion1;
@@ -22,21 +22,15 @@
     emojiCallbacks.getAscent    = TQRichTextRunEmojiDelegateGetAscentCallback;
     emojiCallbacks.getDescent   = TQRichTextRunEmojiDelegateGetDescentCallback;
     emojiCallbacks.getWidth     = TQRichTextRunEmojiDelegateGetWidthCallback;
-    //
-    NSMutableString * str = [[NSMutableString alloc] init];
-    for (int i = 0; i < self.originalText.length; i++)
-    {
-        [str appendString:@" "];
-    }
     
-    NSMutableAttributedString *imageAttributedString = [[NSMutableAttributedString alloc] initWithString:str];
+    NSMutableAttributedString *imageAttributedString = [[NSMutableAttributedString alloc] initWithString:@" "];
     
     //
     CTRunDelegateRef runDelegate = CTRunDelegateCreate(&emojiCallbacks, (__bridge void*)self);
-    [imageAttributedString addAttribute:(NSString *)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:NSMakeRange(0, self.range.length)];
+    [imageAttributedString addAttribute:(NSString *)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:NSMakeRange(0, 1)];
     CFRelease(runDelegate);
     //
-    [imageAttributedString addAttribute:@"TQRichTextAttribute" value:self range:NSMakeRange(0, self.range.length)];
+    [imageAttributedString addAttribute:@"TQRichTextAttribute" value:self range:NSMakeRange(0, 1)];
     
     [attString insertAttributedString:imageAttributedString atIndex:self.range.location];
 }
@@ -65,7 +59,7 @@ CGFloat TQRichTextRunEmojiDelegateGetDescentCallback(void *refCon)
 CGFloat TQRichTextRunEmojiDelegateGetWidthCallback(void *refCon)
 {
     TQRichTextImageRun *run =(__bridge TQRichTextImageRun *) refCon;
-    return (run.originalFont.ascender - run.originalFont.descender) * 1.2 / run.range.length;
+    return (run.originalFont.ascender - run.originalFont.descender) * 1.2;// / run.range.length;
 }
 
 @end

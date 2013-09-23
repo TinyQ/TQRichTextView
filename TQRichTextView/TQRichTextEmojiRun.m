@@ -29,8 +29,6 @@
     {
         CGContextDrawImage(context, rect, image.CGImage);
     }
-    
-    NSLog(@"%f",rect.size.width);
 }
 
 + (NSArray *) emojiStringArray
@@ -42,10 +40,11 @@
 {
     NSString *markL = @"[";
     NSString *markR = @"]";
-    
     NSMutableArray *stack = [[NSMutableArray alloc] init];
-    
     NSMutableString *newString = [[NSMutableString alloc] initWithCapacity:string.length];
+    
+    //偏移索引 由于会把长度大于1的字符串替换成一个空白字符。这里要记录每次的偏移了索引。以便简历下一次替换的正确索引
+    int offsetIndex = 0;
     
     for (int i = 0; i < string.length; i++)
     {
@@ -75,16 +74,12 @@
                 if ([[TQRichTextEmojiRun emojiStringArray] containsObject:emojiStr])
                 {
                     TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
-                    emoji.range = NSMakeRange(i + 1 - emojiStr.length, emojiStr.length);
+                    emoji.range = NSMakeRange(i + 1 - emojiStr.length - offsetIndex, emojiStr.length);
                     emoji.originalText = emojiStr;
                     [*runArray addObject:emoji];
+                    [newString appendString:@" "];
                     
-                    NSMutableString * spaceStr = [[NSMutableString alloc] init];
-                    for (int i = 0; i < emojiStr.length; i++)
-                    {
-                        [spaceStr appendString:@" "];
-                    }
-                    [newString appendString:spaceStr];
+                    offsetIndex += emojiStr.length - 1;
                 }
                 else
                 {
@@ -98,18 +93,8 @@
         {
             [newString appendString:s];
         }
-        
-//        if ([s isEqualToString:@"＋"])
-//        {
-//            NSRange range = NSMakeRange(i, 1);
-//            string = [string stringByReplacingCharactersInRange:range withString:@" "];
-//            
-//            TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
-//            emoji.range = range;
-//            emoji.originalText = @"＋";
-//            [*runArray addObject:emoji];
-//        }
     }
+    
     //http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?
 //^[a-zA-Z]+://(\w+(-\w+)*)(\.(\w+(-\w+)*))*(\?\s*)?$
     
