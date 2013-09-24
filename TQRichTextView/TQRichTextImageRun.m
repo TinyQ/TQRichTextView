@@ -9,6 +9,8 @@
 #import "TQRichTextImageRun.h"
 #import <CoreText/CoreText.h>
 
+static const float kZoom = 1.1f;
+
 @implementation TQRichTextImageRun
 
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attString
@@ -46,21 +48,21 @@ void TQRichTextRunEmojiDelegateDeallocCallback(void *refCon)
 CGFloat TQRichTextRunEmojiDelegateGetAscentCallback(void *refCon)
 {
     TQRichTextImageRun *run =(__bridge TQRichTextImageRun *) refCon;
-    return run.originalFont.ascender * 1.2;
+    return run.originalFont.ascender * kZoom;
 }
 
 //--下行高度
 CGFloat TQRichTextRunEmojiDelegateGetDescentCallback(void *refCon)
 {
     TQRichTextImageRun *run =(__bridge TQRichTextImageRun *) refCon;
-    return run.originalFont.descender * 1.2;
+    return run.originalFont.descender * kZoom;
 }
 
 //-- 宽
 CGFloat TQRichTextRunEmojiDelegateGetWidthCallback(void *refCon)
 {
     TQRichTextImageRun *run =(__bridge TQRichTextImageRun *) refCon;
-    return (run.originalFont.ascender - run.originalFont.descender) * 1.2;
+    return (run.originalFont.ascender - run.originalFont.descender) * kZoom;
 }
 
 @end

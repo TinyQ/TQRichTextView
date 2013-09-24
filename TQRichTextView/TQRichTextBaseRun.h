@@ -11,7 +11,9 @@
 
 typedef enum richTextRunType
 {
+    //-- URL文本单元类型
     richTextURLRunType,
+    //-- 表情文本单元类型
     richTextEmojiRunType,
     
 }TQRichTextRunType;

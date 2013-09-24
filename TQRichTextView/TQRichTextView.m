@@ -20,7 +20,7 @@
         _text = @"";
         _font = [UIFont systemFontOfSize:12.0];
         _textColor = [UIColor blackColor];
-        _lineSpacing = 1.0;
+        _lineSpacing = 1.5;
         //
         _richTextRunsArray = [[NSMutableArray alloc] init];
         _richTextRunRectDic = [[NSMutableDictionary alloc] init];
@@ -29,11 +29,7 @@
     return self;
 }
 
-- (void)dealloc
-{
-    
-}
-
+#pragma mark - Draw Rect
 - (void)drawRect:(CGRect)rect
 {
     //要绘制的文本
@@ -92,22 +88,17 @@ check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
 goto check;
         }
         
-        //--
+        //绘制普通行元素
         drawLineX = CTLineGetPenOffsetForFlush(line,0,self.bounds.size.width);
-        
         CGContextSetTextPosition(context,drawLineX,drawLineY);
-        
         CTLineDraw(line,context);
         
-        //绘制run
+        //绘制替换过的特殊文本单元
         for (int i = 0; i < CFArrayGetCount(runs); i++)
         {
             CTRunRef run = CFArrayGetValueAtIndex(runs, i);
-            
             NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
-            
             TQRichTextBaseRun *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
-            
             if (textRun)
             {
                 CGFloat runAscent,runDescent;
@@ -117,8 +108,8 @@ goto check;
                 CGFloat runPointY = drawLineY - (-runDescent);
                 
                 CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
+                
                 [textRun drawRunWithRect:runRect];
-
                 [self.richTextRunRectDic setObject:textRun forKey:[NSValue valueWithCGRect:runRect]];
             }
         }
@@ -140,33 +131,7 @@ goto check;
     CFRelease(typeSetter);
 }
 
-#pragma mark - Set
-- (void)setText:(NSString *)text
-{
-    [self setNeedsDisplay];
-    _text = text;
-    _textAnalyzed = [self analyzeText:_text];
-}
-
-- (void)setFont:(UIFont *)font
-{
-    [self setNeedsDisplay];
-    _font = font;
-}
-
-- (void)setTextColor:(UIColor *)textColor
-{
-    [self setNeedsDisplay];
-    _textColor = textColor;
-}
-
-- (void)setLineSpacing:(float)lineSpacing
-{
-    [self setNeedsDisplay];
-    _lineSpacing = lineSpacing;
-}
-
-#pragma mark - analyzeText
+#pragma mark - Analyze Text
 //-- 解析文本内容
 - (NSString *)analyzeText:(NSString *)string
 {
@@ -224,6 +189,32 @@ goto check;
              }
          }];
     }
+}
+
+#pragma mark - Set
+- (void)setText:(NSString *)text
+{
+    [self setNeedsDisplay];
+    _text = text;
+    _textAnalyzed = [self analyzeText:_text];
+}
+
+- (void)setFont:(UIFont *)font
+{
+    [self setNeedsDisplay];
+    _font = font;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    [self setNeedsDisplay];
+    _textColor = textColor;
+}
+
+- (void)setLineSpacing:(float)lineSpacing
+{
+    [self setNeedsDisplay];
+    _lineSpacing = lineSpacing;
 }
 
 @end
