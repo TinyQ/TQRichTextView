@@ -15,7 +15,8 @@
 @property(nonatomic,strong) UIColor            *textColor;       // default is [UIColor blackColor]
 @property(nonatomic)        float               lineSpacing;     // default is 1.0 行间距
 
-@property(nonatomic,readonly)       NSMutableArray  *richTextRunsArray;
+@property(nonatomic,readonly)       NSMutableArray *richTextRunsArray;
+@property(nonatomic,readonly)       NSMutableDictionary *richTextRunRectDic;
 @property(nonatomic,readonly,copy)  NSString        *textAnalyzed;
 
 

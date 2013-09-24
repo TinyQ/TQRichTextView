@@ -13,7 +13,7 @@
 //-- 替换基础文本
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString
 {
-    
+    [attributedString addAttribute:@"TQRichTextAttribute" value:self range:self.range];
 }
 
 //-- 绘制内容
@@ -22,4 +22,13 @@
     
 }
 
+- (void)touchBeginWith:(CGPoint)point
+{
+    
+}
+
+- (void)touchEndWith:(CGPoint)point
+{
+    
+}
 @end

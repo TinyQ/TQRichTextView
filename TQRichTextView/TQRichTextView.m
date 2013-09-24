@@ -23,6 +23,7 @@
         _lineSpacing = 1.0;
         //
         _richTextRunsArray = [[NSMutableArray alloc] init];
+        _richTextRunRectDic = [[NSMutableDictionary alloc] init];
         _textAnalyzed = [self analyzeText:_text];
     }
     return self;
@@ -62,8 +63,8 @@
     CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attString);
     float drawLineX = 0;
     float drawLineY = self.bounds.origin.y + self.bounds.size.height - self.font.ascender;
-    
     BOOL drawFlag = YES;
+    [self.richTextRunRectDic removeAllObjects];
     
     while(drawFlag)
     {
@@ -97,6 +98,7 @@ goto check;
         for (int i = 0; i < CFArrayGetCount(runs); i++)
         {
             CTRunRef run = CFArrayGetValueAtIndex(runs, i);
+            
             NSDictionary* attributes = (__bridge NSDictionary*)CTRunGetAttributes(run);
             
             TQRichTextBaseRun *textRun = [attributes objectForKey:@"TQRichTextAttribute"];
@@ -111,9 +113,11 @@ goto check;
                 
                 CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
                 [textRun drawRunWithRect:runRect];
+
+                [self.richTextRunRectDic setObject:textRun forKey:[NSValue valueWithCGRect:runRect]];
             }
         }
-        
+
         CFRelease(line);
         
         if(lineRange.location + lineRange.length >= attString.length)
@@ -153,6 +157,44 @@ goto check;
     [self.richTextRunsArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:self.font];
     
     return result;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //获取UITouch对象
+    UITouch *touch = [touches anyObject];
+    //获取触摸点击当前view的坐标位置
+    CGPoint location = [touch locationInView:self];
+    CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    
+    [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+    {
+        CGRect rect = [((NSValue *)key) CGRectValue];
+        TQRichTextBaseRun *run = obj;
+        if(CGRectContainsPoint(rect, checkLocation))
+        {
+            [run touchBeginWith:location];
+        }
+    }];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //获取UITouch对象
+    UITouch *touch = [touches anyObject];
+    //获取触摸点击当前view的坐标位置
+    CGPoint location = [touch locationInView:self];
+    CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    
+    [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+     {
+         CGRect rect = [((NSValue *)key) CGRectValue];
+         TQRichTextBaseRun *run = obj;
+         if(CGRectContainsPoint(rect, checkLocation))
+         {
+             [run touchEndWith:location];
+         }
+     }];
 }
 
 @end

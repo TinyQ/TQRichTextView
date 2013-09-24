@@ -26,4 +26,7 @@
 //-- 绘制内容
 - (void)drawRunWithRect:(CGRect)rect;
 
+- (void)touchBeginWith:(CGPoint)point;
+
+- (void)touchEndWith:(CGPoint)point;
 @end

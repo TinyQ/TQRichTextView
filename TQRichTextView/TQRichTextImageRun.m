@@ -14,7 +14,7 @@
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attString
 {
     //删除替换的占位字符
-    [attString deleteCharactersInRange:NSMakeRange(self.range.location, 1)];
+    [attString deleteCharactersInRange:self.range];
     
     CTRunDelegateCallbacks emojiCallbacks;
     emojiCallbacks.version      = kCTRunDelegateVersion1;
@@ -23,17 +23,16 @@
     emojiCallbacks.getDescent   = TQRichTextRunEmojiDelegateGetDescentCallback;
     emojiCallbacks.getWidth     = TQRichTextRunEmojiDelegateGetWidthCallback;
 
-    
     NSMutableAttributedString *imageAttributedString = [[NSMutableAttributedString alloc] initWithString:@" "];
     
     //
     CTRunDelegateRef runDelegate = CTRunDelegateCreate(&emojiCallbacks, (__bridge void*)self);
     [imageAttributedString addAttribute:(NSString *)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:NSMakeRange(0, 1)];
     CFRelease(runDelegate);
-    //
-    [imageAttributedString addAttribute:@"TQRichTextAttribute" value:self range:NSMakeRange(0, 1)];
     
     [attString insertAttributedString:imageAttributedString atIndex:self.range.location];
+    
+    [super replaceTextWithAttributedString:attString];
 }
 
 #pragma mark - RunDelegateCallback

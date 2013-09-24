@@ -14,6 +14,7 @@
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString
 {
     [attributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)[UIColor blueColor].CGColor range:self.range];
+    [super replaceTextWithAttributedString:attributedString];
 }
 
 //-- 绘制内容
