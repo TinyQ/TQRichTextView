@@ -18,6 +18,7 @@ typedef enum richTextRunType
 
 @interface TQRichTextBaseRun : NSObject
 
+//-- 文本单元类型
 @property (nonatomic) TQRichTextRunType type;
 
 //-- 原始文本
@@ -35,8 +36,5 @@ typedef enum richTextRunType
 //-- 绘制内容
 - (void)drawRunWithRect:(CGRect)rect;
 
-- (void)touchBeginWith:(CGPoint)point;
-
-- (void)touchEndWith:(CGPoint)point;
 
 @end

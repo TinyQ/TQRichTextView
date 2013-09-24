@@ -32,6 +32,7 @@
     
 }
 
+//-- 解析文本内容
 + (NSString *)analyzeText:(NSString *)string runsArray:(NSMutableArray **)runArray
 {
     NSError *error;

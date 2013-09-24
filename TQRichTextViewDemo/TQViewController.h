@@ -11,4 +11,6 @@
 
 @interface TQViewController : UIViewController <TQRichTextViewDelegate>
 
+@property (nonatomic,strong) TQRichTextView *richTextView;
+
 @end

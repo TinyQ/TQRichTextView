@@ -22,13 +22,4 @@
     
 }
 
-- (void)touchBeginWith:(CGPoint)point
-{
-    
-}
-
-- (void)touchEndWith:(CGPoint)point
-{
-    
-}
 @end

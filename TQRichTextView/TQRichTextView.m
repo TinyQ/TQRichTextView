@@ -143,14 +143,36 @@ goto check;
 #pragma mark - Set
 - (void)setText:(NSString *)text
 {
+    [self setNeedsDisplay];
     _text = text;
     _textAnalyzed = [self analyzeText:_text];
+}
+
+- (void)setFont:(UIFont *)font
+{
+    [self setNeedsDisplay];
+    _font = font;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    [self setNeedsDisplay];
+    _textColor = textColor;
+}
+
+- (void)setLineSpacing:(float)lineSpacing
+{
+    [self setNeedsDisplay];
+    _lineSpacing = lineSpacing;
 }
 
 #pragma mark - analyzeText
 //-- 解析文本内容
 - (NSString *)analyzeText:(NSString *)string
 {
+    [self.richTextRunsArray removeAllObjects];
+    [self.richTextRunRectDic removeAllObjects];
+    
     NSString *result = @"";
     
     NSMutableArray *array = self.richTextRunsArray;
@@ -160,27 +182,25 @@ goto check;
     result = [TQRichTextURLRun analyzeText:result runsArray:&array];
     
     [self.richTextRunsArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:self.font];
-    
+
     return result;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //获取UITouch对象
-    UITouch *touch = [touches anyObject];
-    //获取触摸点击当前view的坐标位置
-    CGPoint location = [touch locationInView:self];
-    CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
+    CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
     if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
     {
-        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+        __weak TQRichTextView *weakSelf = self;
+        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
          {
              CGRect rect = [((NSValue *)key) CGRectValue];
              TQRichTextBaseRun *run = obj;
-             if(CGRectContainsPoint(rect, checkLocation))
+             if(CGRectContainsPoint(rect, runLocation))
              {
-                 [self.delegage richTextView:self touchBeginRun:run];
+                 [weakSelf.delegage richTextView:weakSelf touchBeginRun:run];
              }
          }];
     }
@@ -188,21 +208,19 @@ goto check;
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //获取UITouch对象
-    UITouch *touch = [touches anyObject];
-    //获取触摸点击当前view的坐标位置
-    CGPoint location = [touch locationInView:self];
-    CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
+    CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
     if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchEndRun:)])
     {
-        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
          {
+             __weak TQRichTextView *weakSelf = self;
              CGRect rect = [((NSValue *)key) CGRectValue];
              TQRichTextBaseRun *run = obj;
-             if(CGRectContainsPoint(rect, checkLocation))
+             if(CGRectContainsPoint(rect, runLocation))
              {
-                 [self.delegage richTextView:self touchEndRun:run];
+                 [weakSelf.delegage richTextView:weakSelf touchEndRun:run];
              }
          }];
     }

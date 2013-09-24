@@ -29,6 +29,7 @@
 @property(nonatomic,readonly)       NSMutableArray *richTextRunsArray;
 @property(nonatomic,readonly)       NSMutableDictionary *richTextRunRectDic;
 @property(nonatomic,readonly,copy)  NSString        *textAnalyzed;
+
 @property(nonatomic,weak) id<TQRichTextViewDelegate> delegage;
 
 @end

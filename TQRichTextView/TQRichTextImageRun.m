@@ -36,6 +36,7 @@
 }
 
 #pragma mark - RunDelegateCallback
+
 void TQRichTextRunEmojiDelegateDeallocCallback(void *refCon)
 {
     
