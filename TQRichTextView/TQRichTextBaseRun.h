@@ -9,7 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
 
+typedef enum richTextRunType
+{
+    richTextURLRunType,
+    richTextEmojiRunType,
+    
+}TQRichTextRunType;
+
 @interface TQRichTextBaseRun : NSObject
+
+@property (nonatomic) TQRichTextRunType type;
 
 //-- 原始文本
 @property (nonatomic,copy) NSString *originalText;
@@ -29,4 +38,5 @@
 - (void)touchBeginWith:(CGPoint)point;
 
 - (void)touchEndWith:(CGPoint)point;
+
 @end

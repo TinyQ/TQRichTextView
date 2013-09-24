@@ -7,6 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TQRichTextBaseRun.h"
+
+@class TQRichTextView;
+
+@protocol TQRichTextViewDelegate<NSObject>
+
+@optional
+- (void)richTextView:(TQRichTextView *)view touchBeginRun:(TQRichTextBaseRun *)run;
+- (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextBaseRun *)run;
+
+@end
 
 @interface TQRichTextView : UIView
 
@@ -18,6 +29,6 @@
 @property(nonatomic,readonly)       NSMutableArray *richTextRunsArray;
 @property(nonatomic,readonly)       NSMutableDictionary *richTextRunRectDic;
 @property(nonatomic,readonly,copy)  NSString        *textAnalyzed;
-
+@property(nonatomic,weak) id<TQRichTextViewDelegate> delegage;
 
 @end

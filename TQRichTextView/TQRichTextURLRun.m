@@ -10,6 +10,15 @@
 
 @implementation TQRichTextURLRun
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.type = richTextURLRunType;
+    }
+    return self;
+}
+
 //-- 替换基础文本
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString
 {
@@ -37,8 +46,6 @@
         urlRun.originalText = substringForMatch;
         
         [*runArray addObject:urlRun];
-        
-        NSLog(@"Extracted URL: %@",substringForMatch);
     }
     
     return [string copy];

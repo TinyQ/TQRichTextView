@@ -29,6 +29,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    
+}
+
 - (void)drawRect:(CGRect)rect
 {
     //要绘制的文本
@@ -167,15 +172,18 @@ goto check;
     CGPoint location = [touch locationInView:self];
     CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
-    [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
     {
-        CGRect rect = [((NSValue *)key) CGRectValue];
-        TQRichTextBaseRun *run = obj;
-        if(CGRectContainsPoint(rect, checkLocation))
-        {
-            [run touchBeginWith:location];
-        }
-    }];
+        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
+         {
+             CGRect rect = [((NSValue *)key) CGRectValue];
+             TQRichTextBaseRun *run = obj;
+             if(CGRectContainsPoint(rect, checkLocation))
+             {
+                 [self.delegage richTextView:self touchBeginRun:run];
+             }
+         }];
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -186,15 +194,18 @@ goto check;
     CGPoint location = [touch locationInView:self];
     CGPoint checkLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
-    [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
-     {
-         CGRect rect = [((NSValue *)key) CGRectValue];
-         TQRichTextBaseRun *run = obj;
-         if(CGRectContainsPoint(rect, checkLocation))
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchEndRun:)])
+    {
+        [self.richTextRunRectDic enumerateKeysAndObjectsUsingBlock:^(__strong id key, __strong id obj, BOOL *stop)
          {
-             [run touchEndWith:location];
-         }
-     }];
+             CGRect rect = [((NSValue *)key) CGRectValue];
+             TQRichTextBaseRun *run = obj;
+             if(CGRectContainsPoint(rect, checkLocation))
+             {
+                 [self.delegage richTextView:self touchEndRun:run];
+             }
+         }];
+    }
 }
 
 @end
