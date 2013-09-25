@@ -10,6 +10,15 @@
 
 @implementation TQRichTextBaseRun
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.isResponseTouch = NO;
+    }
+    return self;
+}
+
 //-- 替换基础文本
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString
 {
@@ -17,9 +26,9 @@
 }
 
 //-- 绘制内容
-- (void)drawRunWithRect:(CGRect)rect
+- (BOOL)drawRunWithRect:(CGRect)rect
 {
-    
+    return NO;
 }
 
 @end

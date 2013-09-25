@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     self.richTextView = [[TQRichTextView alloc] initWithFrame:CGRectMake(0, 22, 320, 320)];
-    self.richTextView.text = @"[smile]＋一＋二[cry]三四＋＋五bounding＋box协议是＋一种具体形<title>1Q84 BOOsK1</title>式的接口或协议是一种＋具体形式的式的式的式的式的式的式的式的式的式[cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry][cry]的式的式的式的式的式的式的式的式[smile]的式的式的[smile]式的式的式的[smile]式的式的式的接口或协议是＋一种具体形式的接口＋＋或＋协议是一种具体形式的接的式的式的式的式的式的的式的式<title>1Q84 BOOK1</title>的[smile][smile][smile]式的式的式的的式的式<title>1Q84 BOOsK1</title>的式的式的式<div>haha</div>的的式的式的(21)式的式的式http://www.baidu.com/ 的的式的式[smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile][smile]的式的式的式的的式的式的式的式的[smile][smile][smi[smile]le][smile][smile]式的http://www.baidu.com 的式的式的式的式的式的的式的式的式的式的式的[cry]的式的式的[cry]式的式的式的口或＋协议是一种＋具体形式的接口或协议＋是一种具体形式的＋接口或口或协议是一种具体形式的接[lala]口或协议是一 1234a56789 种具体的接口或bounding bounding bounding bounding nding口或＋协议是一接口或协议＋是一口或＋协议是一体形式[smile]的接[哈哈]h[smile][smile]";
+    self.richTextView.text = @"[smile]RichTextBox控件允许用户输入和编辑文本的同时提供了[cry]比普通的TextBox控件更高级的格式特征。 RichTextBox控件提供了数个有用的特征[smile]，你可以在控件中安排文本的格式。[smile]要改变文本的格式，[cry]必须先选中该文本。只有选中的文本才可以编排字符和段落的格式。https://github.com额/有了这些属性，就可以设置[cry]文本使用粗体，改变[cry]字体的颜色，创建超底稿和子底稿。[smile]也可以设置左右缩排或不缩排，从而调整段落的格式。 RichTextBox控件可以打开和保存RTF文件或普通的ASCII文本文件。你可以使用控件的方法（LoadFile[smile]SaveFile）直接读和写文件 RichTextBox控件使用集合支https://github.com持嵌入的对象。每个嵌入控件中的对象都表示为一个[1]对象。这允许文档中创建的控件可以包含其他控件或文档。https://github.com/ 例如，可以创建一个包含报表、Microsoft Word文档或任何在系统中注册的其他OLE对象的文档。要在RichTextBox控件中插入对象，可以简单地拖住一个文件（如使用Windows 95的Explorerwww.chiphell.com/或其他应用程序（如Microsoft Word）中所用文件的加亮部分（选择部分），将其直接放到该RichTextBox控件上。http://www.cnblogs.com/CCSSPP/";
     self.richTextView.backgroundColor = [UIColor grayColor];
     self.richTextView.delegage = self;
     [self.view addSubview:self.richTextView];
@@ -33,7 +33,11 @@
 
 - (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextBaseRun *)run
 {
-    NSLog(@"%@",run.originalText);
+    if (run.type == richTextURLRunType)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:run.originalText]];
+    }
+//    NSLog(@"%@",run.originalText);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

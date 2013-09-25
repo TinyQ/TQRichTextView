@@ -15,11 +15,12 @@
     self = [super init];
     if (self) {
         self.type = richTextEmojiRunType;
+        self.isResponseTouch = NO;
     }
     return self;
 }
 
-- (void)drawRunWithRect:(CGRect)rect
+- (BOOL)drawRunWithRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     NSString *emojiString = [NSString stringWithFormat:@"%@.png",self.originalText];
@@ -29,6 +30,7 @@
     {
         CGContextDrawImage(context, rect, image.CGImage);
     }
+    return YES;
 }
 
 + (NSArray *) emojiStringArray

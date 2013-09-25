@@ -41,7 +41,7 @@ static const float kZoom = 1.1f;
 
 void TQRichTextRunEmojiDelegateDeallocCallback(void *refCon)
 {
-    
+
 }
 
 //--上行高度

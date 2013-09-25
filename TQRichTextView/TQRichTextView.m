@@ -106,11 +106,24 @@ goto check;
                 CGFloat runHeight = runAscent + (-runDescent);
                 CGFloat runPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL);
                 CGFloat runPointY = drawLineY - (-runDescent);
-                
+
                 CGRect runRect = CGRectMake(runPointX, runPointY, runWidth, runHeight);
                 
-                [textRun drawRunWithRect:runRect];
-                [self.richTextRunRectDic setObject:textRun forKey:[NSValue valueWithCGRect:runRect]];
+                BOOL isDraw = [textRun drawRunWithRect:runRect];
+                
+                if (textRun.isResponseTouch)
+                {
+                    if (isDraw)
+                    {
+                        [self.richTextRunRectDic setObject:textRun forKey:[NSValue valueWithCGRect:runRect]];
+                    }
+                    else
+                    {
+                        runRect = CTRunGetImageBounds(run, context, CFRangeMake(0, 0));
+                        runRect.origin.x = runPointX;
+                        [self.richTextRunRectDic setObject:textRun forKey:[NSValue valueWithCGRect:runRect]];
+                    }
+                }
             }
         }
 
@@ -122,9 +135,7 @@ goto check;
         }
 
         lineCount++;
-        
         drawLineY -= self.font.ascender + (- self.font.descender) + self.lineSpacing;
-        
         lineRange.location += lineRange.length;
     }
     

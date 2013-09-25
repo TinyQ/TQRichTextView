@@ -32,11 +32,14 @@ typedef enum richTextRunType
 //-- 文本所在位置
 @property (nonatomic) NSRange range;
 
+//-- 是否响应触摸
+@property (nonatomic) BOOL isResponseTouch;
+
 //-- 替换基本文本样式
 - (void)replaceTextWithAttributedString:(NSMutableAttributedString*) attributedString;
 
-//-- 绘制内容
-- (void)drawRunWithRect:(CGRect)rect;
+//-- 绘制内容 (YES 表示这个函数自己绘制，NO表示CoreText绘制)
+- (BOOL)drawRunWithRect:(CGRect)rect;
 
 
 @end
