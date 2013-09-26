@@ -24,7 +24,7 @@
         //
         _richTextRunsArray = [[NSMutableArray alloc] init];
         _richTextRunRectDic = [[NSMutableDictionary alloc] init];
-        _textAnalyzed = [self analyzeText:_text];
+        //_textAnalyzed = [self analyzeText:_text];
     }
     return self;
 }
@@ -32,6 +32,9 @@
 #pragma mark - Draw Rect
 - (void)drawRect:(CGRect)rect
 {
+    //解析文本
+    _textAnalyzed = [self analyzeText:_text];
+    
     //要绘制的文本
     NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] initWithString:self.textAnalyzed];
 
@@ -207,7 +210,6 @@ goto check;
 {
     [self setNeedsDisplay];
     _text = text;
-    _textAnalyzed = [self analyzeText:_text];
 }
 
 - (void)setFont:(UIFont *)font
