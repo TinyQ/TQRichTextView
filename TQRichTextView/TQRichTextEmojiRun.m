@@ -75,10 +75,13 @@
                 
                 if ([[TQRichTextEmojiRun emojiStringArray] containsObject:emojiStr])
                 {
-                    TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
-                    emoji.range = NSMakeRange(i + 1 - emojiStr.length - offsetIndex, 1);
-                    emoji.originalText = emojiStr;
-                    [*runArray addObject:emoji];
+                    if (*runArray)
+                    {
+                        TQRichTextEmojiRun *emoji = [[TQRichTextEmojiRun alloc] init];
+                        emoji.range = NSMakeRange(i + 1 - emojiStr.length - offsetIndex, 1);
+                        emoji.originalText = emojiStr;
+                        [*runArray addObject:emoji];
+                    }
                     [newString appendString:@" "];
                     
                     offsetIndex += emojiStr.length - 1;

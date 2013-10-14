@@ -32,24 +32,27 @@
 #pragma mark - Draw Rect
 - (void)drawRect:(CGRect)rect
 {
+    [self.richTextRunsArray removeAllObjects];
+    [self.richTextRunRectDic removeAllObjects];
+    
     //解析文本
-    _textAnalyzed = [self analyzeText:_text];
+    _textAnalyzed = [TQRichTextView analyzeText:_text textRunsArray:self.richTextRunsArray font:self.font];
     
     //要绘制的文本
-    NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] initWithString:self.textAnalyzed];
+    _attString = [[NSMutableAttributedString alloc] initWithString:self.textAnalyzed];
 
     //设置字体
     CTFontRef aFont = CTFontCreateWithName((__bridge CFStringRef)self.font.fontName, self.font.pointSize, NULL);
-    [attString addAttribute:(NSString*)kCTFontAttributeName value:(__bridge id)aFont range:NSMakeRange(0,attString.length)];
+    [self.attString addAttribute:(NSString*)kCTFontAttributeName value:(__bridge id)aFont range:NSMakeRange(0,self.attString.length)];
     CFRelease(aFont);
     
     //设置颜色
-    [attString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)self.textColor.CGColor range:NSMakeRange(0,attString.length)];
+    [self.attString addAttribute:(NSString *)kCTForegroundColorAttributeName value:(id)self.textColor.CGColor range:NSMakeRange(0,self.attString.length)];
     
     //文本处理
     for (TQRichTextBaseRun *textRun in self.richTextRunsArray)
     {
-        [textRun replaceTextWithAttributedString:attString];
+        [textRun replaceTextWithAttributedString:self.attString];
     }
 
     //绘图上下文
@@ -62,9 +65,9 @@
     CGContextConcatCTM(context, textTran);
 
     //绘制
-    int lineCount = 0;
+    _lineCount = 0;
     CFRange lineRange = CFRangeMake(0,0);
-    CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attString);
+    CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.attString);
     float drawLineX = 0;
     float drawLineY = self.bounds.origin.y + self.bounds.size.height - self.font.ascender;
     BOOL drawFlag = YES;
@@ -132,12 +135,12 @@ goto check;
 
         CFRelease(line);
         
-        if(lineRange.location + lineRange.length >= attString.length)
+        if(lineRange.location + lineRange.length >= self.attString.length)
         {
             drawFlag = NO;
         }
 
-        lineCount++;
+        _lineCount++;
         drawLineY -= self.font.ascender + (- self.font.descender) + self.lineSpacing;
         lineRange.location += lineRange.length;
     }
@@ -146,22 +149,17 @@ goto check;
 }
 
 #pragma mark - Analyze Text
-//-- 解析文本内容
-- (NSString *)analyzeText:(NSString *)string
+
++ (NSString *)analyzeText:(NSString *)string textRunsArray:(NSMutableArray *)runArray font:(UIFont *)font
 {
-    [self.richTextRunsArray removeAllObjects];
-    [self.richTextRunRectDic removeAllObjects];
-    
     NSString *result = @"";
     
-    NSMutableArray *array = self.richTextRunsArray;
+    result = [TQRichTextEmojiRun analyzeText:string runsArray:&runArray];
     
-    result = [TQRichTextEmojiRun analyzeText:string runsArray:&array];
+    result = [TQRichTextURLRun analyzeText:result runsArray:&runArray];
     
-    result = [TQRichTextURLRun analyzeText:result runsArray:&array];
+    [runArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:font];
     
-    [self.richTextRunsArray makeObjectsPerformSelector:@selector(setOriginalFont:) withObject:self.font];
-
     return result;
 }
 
@@ -228,6 +226,62 @@ goto check;
 {
     [self setNeedsDisplay];
     _lineSpacing = lineSpacing;
+}
+
+#pragma mark -
++ (CGFloat)getRechTextViewHeightWithText:(NSString *)text
+                               viewWidth:(CGFloat)width
+                                    font:(UIFont *)font
+                             lineSpacing:(CGFloat)lineSpacing;
+{
+    NSString *analyzeText = [TQRichTextView analyzeText:text textRunsArray:nil font:font];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:analyzeText];
+    //设置字体
+    CTFontRef aFont = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize, NULL);
+    [attString addAttribute:(NSString*)kCTFontAttributeName value:(__bridge id)aFont range:NSMakeRange(0,attString.length)];
+    CFRelease(aFont);
+    
+    int lineCount = 0;
+    CFRange lineRange = CFRangeMake(0,0);
+    CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attString);
+    float drawLineX = 0;
+    float drawLineY = 0;
+    BOOL drawFlag = YES;
+
+    while(drawFlag)
+    {
+        CFIndex testLineLength = CTTypesetterSuggestLineBreak(typeSetter,lineRange.location,width);
+check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
+        CTLineRef line = CTTypesetterCreateLine(typeSetter,lineRange);
+        CFArrayRef runs = CTLineGetGlyphRuns(line);
+        
+        //边界检查
+        CTRunRef lastRun = CFArrayGetValueAtIndex(runs, CFArrayGetCount(runs) - 1);
+        CGFloat lastRunAscent;
+        CGFloat laseRunDescent;
+        CGFloat lastRunWidth  = CTRunGetTypographicBounds(lastRun, CFRangeMake(0,0), &lastRunAscent, &laseRunDescent, NULL);
+        CGFloat lastRunPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(lastRun).location, NULL);
+        
+        if ((lastRunWidth + lastRunPointX) > width)
+        {
+            testLineLength--;
+            CFRelease(line);
+goto check;
+        }
+        
+        CFRelease(line);
+        
+        if(lineRange.location + lineRange.length >= attString.length)
+        {
+            drawFlag = NO;
+        }
+        
+        lineCount++;
+        drawLineY += font.ascender + (- font.descender) + lineSpacing;
+        lineRange.location += lineRange.length;
+    }
+    CFRelease(typeSetter);
+    return drawLineY;
 }
 
 @end

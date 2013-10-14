@@ -32,7 +32,14 @@
 @property(nonatomic,readonly)       NSMutableDictionary *richTextRunRectDic;
 //-- 原文本通过解析后的文本
 @property(nonatomic,readonly,copy)  NSString        *textAnalyzed;
-
+//-- 属性字符串
+@property(nonatomic,readonly)       NSMutableAttributedString *attString;
+//-- 文本行数。
+@property(nonatomic,readonly)       NSInteger  *lineCount;
+//-- delegage
 @property(nonatomic,weak) id<TQRichTextViewDelegate> delegage;
+
+//-- 通过字符串计算文本控件的高度
++ (CGFloat)getRechTextViewHeightWithText:(NSString *)text viewWidth:(CGFloat)width font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
 
 @end
