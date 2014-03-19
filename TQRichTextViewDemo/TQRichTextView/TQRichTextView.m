@@ -249,7 +249,7 @@
     return self.touchRun;
 }
 
-#pragma mark - Create Attributed String
+#pragma mark -
 
 + (NSMutableAttributedString *)createAttributedStringWithText:(NSString *)text font:(UIFont *)font lineSpace:(CGFloat)lineSpace
 {

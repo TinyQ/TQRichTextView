@@ -44,6 +44,11 @@
 
 - (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextRun *)run
 {
+    if ([run isKindOfClass:[TQRichTextRunURL class]])
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:run.text]];
+    }
+    
     NSLog(@"%@",run.text);
 }
 
