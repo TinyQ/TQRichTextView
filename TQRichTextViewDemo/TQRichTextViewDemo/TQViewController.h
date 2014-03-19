@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TQRichTextView.h"
 
-@interface TQViewController : UIViewController
+@interface TQViewController : UIViewController <TQRichTextViewDelegate>
 
 @end

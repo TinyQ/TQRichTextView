@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TQRichTextRun.h"
+#import "TQRichTextRunURL.h"
+#import "TQRichTextRunEmoji.h"
+
+@class TQRichTextView;
 
 typedef NS_OPTIONS(NSUInteger, TQRichTextRunTypeList)
 {
@@ -15,7 +20,17 @@ typedef NS_OPTIONS(NSUInteger, TQRichTextRunTypeList)
     TQRichTextRunEmojiType = 1 << 1,
 };
 
+@protocol TQRichTextViewDelegate<NSObject>
+
+@optional
+- (void)richTextView:(TQRichTextView *)view touchBeginRun:(TQRichTextRun *)run;
+- (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextRun *)run;
+
+@end
+
 @interface TQRichTextView : UIView
+
+@property(nonatomic,weak) id<TQRichTextViewDelegate> delegage;
 
 @property (nonatomic,copy  ) NSString              *text;       // default is nil
 @property (nonatomic,copy  ) NSMutableAttributedString *attributedText;

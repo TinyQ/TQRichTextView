@@ -8,7 +8,6 @@
 
 #import "TQViewController.h"
 
-#import "TQRichTextView.h"
 
 @interface TQViewController ()
 
@@ -32,9 +31,20 @@
     textView.lineSpace = 1.0f;
     textView.font = [UIFont systemFontOfSize:13.0f];
     textView.backgroundColor = [UIColor grayColor];
+    textView.delegage = self;
     
     [self.view addSubview:textView];
     
+}
+
+- (void)richTextView:(TQRichTextView *)view touchBeginRun:(TQRichTextRun *)run
+{
+    
+}
+
+- (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextRun *)run
+{
+    NSLog(@"%@",run.text);
 }
 
 @end

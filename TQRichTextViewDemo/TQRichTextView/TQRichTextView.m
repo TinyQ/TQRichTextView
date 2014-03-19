@@ -8,12 +8,12 @@
 
 #import "TQRichTextView.h"
 #import <CoreText/CoreText.h>
-#import "TQRichTextRunURL.h"
-#import "TQRichTextRunEmoji.h"
+
 
 @interface TQRichTextView ()
 
 @property (nonatomic,strong) NSMutableArray *runs;
+@property (nonatomic,strong) NSMutableDictionary *runRectDictionary;
 
 @end
 
@@ -50,6 +50,7 @@
     self.attributedText = nil;
     //private
     self.runs        = [NSMutableArray array];
+    self.runRectDictionary = [NSMutableDictionary dictionary];
 }
 
 #pragma mark - Draw Rect
@@ -59,6 +60,9 @@
     if (self.text == nil){
         return;
     }
+    
+    [self.runs removeAllObjects];
+    [self.runRectDictionary removeAllObjects];
     
     CGRect viewRect = self.bounds;
     
@@ -75,7 +79,7 @@
     }
     
     NSArray *runs = [[self class] createTextRunsWithAttString:attString runTypeList:self.runTypeList];
-    [self.runs removeAllObjects];
+    
     [self.runs addObjectsFromArray:runs];
     
     //绘图上下文
@@ -136,7 +140,18 @@
                 CGFloat runPointX = runRect.origin.x + lineOrigin.x;
                 CGFloat runPointY = lineOrigin.y ;
                 
-                [richTextRun drawRunWithRect:CGRectMake(runPointX, runPointY, runWidth, runHeight)];
+                CGRect runRectDraw = CGRectMake(runPointX, runPointY, runWidth, runHeight);
+                
+                [richTextRun drawRunWithRect:runRectDraw];
+                
+                [self.runRectDictionary setObject:richTextRun forKey:[NSValue valueWithCGRect:runRectDraw]];
+            }
+            else
+            {
+                if (richTextRun)
+                {
+                    [self.runRectDictionary setObject:richTextRun forKey:[NSValue valueWithCGRect:runRect]];
+                }
             }
         }
     }
@@ -154,6 +169,24 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    
+    CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
+    CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
+    {
+        __weak TQRichTextView *weakSelf = self;
+        
+        [self.runRectDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            
+             CGRect rect = [((NSValue *)key) CGRectValue];
+             TQRichTextRun *run = obj;
+             if(CGRectContainsPoint(rect, runLocation))
+             {
+                 [weakSelf.delegage richTextView:weakSelf touchBeginRun:run];
+             }
+         }];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -164,6 +197,24 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
+    
+    CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
+    CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
+    {
+        __weak TQRichTextView *weakSelf = self;
+        
+        [self.runRectDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            
+            CGRect rect = [((NSValue *)key) CGRectValue];
+            TQRichTextRun *run = obj;
+            if(CGRectContainsPoint(rect, runLocation))
+            {
+                [weakSelf.delegage richTextView:weakSelf touchEndRun:run];
+            }
+        }];
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
