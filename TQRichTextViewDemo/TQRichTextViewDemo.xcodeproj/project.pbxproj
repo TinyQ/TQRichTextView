@@ -1,0 +1,524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		580164FE18C37AF6005F0C8A /* [hei].png in Resources */ = {isa = PBXBuildFile; fileRef = 580164FD18C37AF6005F0C8A /* [hei].png */; };
+		587B8D5918BF04FE00575C9D /* TQRichTextRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B8D5818BF04FE00575C9D /* TQRichTextRun.m */; };
+		587B8D5C18BF151700575C9D /* TQRichTextRunURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B8D5B18BF151700575C9D /* TQRichTextRunURL.m */; };
+		587B8D5F18C01D9500575C9D /* TQRichTextRunDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B8D5E18C01D9500575C9D /* TQRichTextRunDelegate.m */; };
+		587B8D6218C0258A00575C9D /* TQRichTextRunEmoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 587B8D6118C0258A00575C9D /* TQRichTextRunEmoji.m */; };
+		587B8D6718C04EB200575C9D /* [cry].png in Resources */ = {isa = PBXBuildFile; fileRef = 587B8D6418C04EB200575C9D /* [cry].png */; };
+		587B8D6918C04EB200575C9D /* [smile].png in Resources */ = {isa = PBXBuildFile; fileRef = 587B8D6618C04EB200575C9D /* [smile].png */; };
+		58CDB84D18BDD43400E03F52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB84C18BDD43400E03F52 /* Foundation.framework */; };
+		58CDB84F18BDD43400E03F52 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB84E18BDD43400E03F52 /* CoreGraphics.framework */; };
+		58CDB85118BDD43400E03F52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB85018BDD43400E03F52 /* UIKit.framework */; };
+		58CDB85718BDD43400E03F52 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 58CDB85518BDD43400E03F52 /* InfoPlist.strings */; };
+		58CDB85918BDD43400E03F52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB85818BDD43400E03F52 /* main.m */; };
+		58CDB85D18BDD43400E03F52 /* TQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB85C18BDD43400E03F52 /* TQAppDelegate.m */; };
+		58CDB86318BDD43400E03F52 /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB86218BDD43400E03F52 /* TQViewController.m */; };
+		58CDB86518BDD43400E03F52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58CDB86418BDD43400E03F52 /* Images.xcassets */; };
+		58CDB86C18BDD43400E03F52 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB86B18BDD43400E03F52 /* XCTest.framework */; };
+		58CDB86D18BDD43400E03F52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB84C18BDD43400E03F52 /* Foundation.framework */; };
+		58CDB86E18BDD43400E03F52 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB85018BDD43400E03F52 /* UIKit.framework */; };
+		58CDB87618BDD43400E03F52 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 58CDB87418BDD43400E03F52 /* InfoPlist.strings */; };
+		58CDB87818BDD43400E03F52 /* TQRichTextViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB87718BDD43400E03F52 /* TQRichTextViewDemoTests.m */; };
+		58CDB88418BDD56600E03F52 /* TQRichTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58CDB88318BDD56600E03F52 /* TQRichTextView.m */; };
+		58CDB88618BDD9E400E03F52 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CDB88518BDD9E400E03F52 /* CoreText.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		58CDB86F18BDD43400E03F52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58CDB84118BDD43400E03F52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58CDB84818BDD43400E03F52;
+			remoteInfo = TQRichTextViewDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		580164FD18C37AF6005F0C8A /* [hei].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[hei].png"; sourceTree = "<group>"; };
+		587B8D5718BF04FE00575C9D /* TQRichTextRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRun.h; sourceTree = "<group>"; };
+		587B8D5818BF04FE00575C9D /* TQRichTextRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRun.m; sourceTree = "<group>"; };
+		587B8D5A18BF151700575C9D /* TQRichTextRunURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunURL.h; sourceTree = "<group>"; };
+		587B8D5B18BF151700575C9D /* TQRichTextRunURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunURL.m; sourceTree = "<group>"; };
+		587B8D5D18C01D9500575C9D /* TQRichTextRunDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunDelegate.h; sourceTree = "<group>"; };
+		587B8D5E18C01D9500575C9D /* TQRichTextRunDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunDelegate.m; sourceTree = "<group>"; };
+		587B8D6018C0258A00575C9D /* TQRichTextRunEmoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextRunEmoji.h; sourceTree = "<group>"; };
+		587B8D6118C0258A00575C9D /* TQRichTextRunEmoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextRunEmoji.m; sourceTree = "<group>"; };
+		587B8D6418C04EB200575C9D /* [cry].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[cry].png"; sourceTree = "<group>"; };
+		587B8D6618C04EB200575C9D /* [smile].png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[smile].png"; sourceTree = "<group>"; };
+		58CDB84918BDD43400E03F52 /* TQRichTextViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TQRichTextViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		58CDB84C18BDD43400E03F52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		58CDB84E18BDD43400E03F52 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		58CDB85018BDD43400E03F52 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		58CDB85418BDD43400E03F52 /* TQRichTextViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TQRichTextViewDemo-Info.plist"; sourceTree = "<group>"; };
+		58CDB85618BDD43400E03F52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		58CDB85818BDD43400E03F52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		58CDB85A18BDD43400E03F52 /* TQRichTextViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQRichTextViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		58CDB85B18BDD43400E03F52 /* TQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQAppDelegate.h; sourceTree = "<group>"; };
+		58CDB85C18BDD43400E03F52 /* TQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQAppDelegate.m; sourceTree = "<group>"; };
+		58CDB86118BDD43400E03F52 /* TQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQViewController.h; sourceTree = "<group>"; };
+		58CDB86218BDD43400E03F52 /* TQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQViewController.m; sourceTree = "<group>"; };
+		58CDB86418BDD43400E03F52 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		58CDB86A18BDD43400E03F52 /* TQRichTextViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TQRichTextViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		58CDB86B18BDD43400E03F52 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		58CDB87318BDD43400E03F52 /* TQRichTextViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TQRichTextViewDemoTests-Info.plist"; sourceTree = "<group>"; };
+		58CDB87518BDD43400E03F52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		58CDB87718BDD43400E03F52 /* TQRichTextViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQRichTextViewDemoTests.m; sourceTree = "<group>"; };
+		58CDB88218BDD56600E03F52 /* TQRichTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQRichTextView.h; sourceTree = "<group>"; };
+		58CDB88318BDD56600E03F52 /* TQRichTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQRichTextView.m; sourceTree = "<group>"; };
+		58CDB88518BDD9E400E03F52 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		58CDB84618BDD43400E03F52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58CDB88618BDD9E400E03F52 /* CoreText.framework in Frameworks */,
+				58CDB84F18BDD43400E03F52 /* CoreGraphics.framework in Frameworks */,
+				58CDB85118BDD43400E03F52 /* UIKit.framework in Frameworks */,
+				58CDB84D18BDD43400E03F52 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58CDB86718BDD43400E03F52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58CDB86C18BDD43400E03F52 /* XCTest.framework in Frameworks */,
+				58CDB86E18BDD43400E03F52 /* UIKit.framework in Frameworks */,
+				58CDB86D18BDD43400E03F52 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		587B8D6318C04EB200575C9D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				580164FD18C37AF6005F0C8A /* [hei].png */,
+				587B8D6418C04EB200575C9D /* [cry].png */,
+				587B8D6618C04EB200575C9D /* [smile].png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		58CDB84018BDD43400E03F52 = {
+			isa = PBXGroup;
+			children = (
+				58CDB88118BDD50000E03F52 /* TQRichTextView */,
+				58CDB85218BDD43400E03F52 /* TQRichTextViewDemo */,
+				58CDB87118BDD43400E03F52 /* TQRichTextViewDemoTests */,
+				58CDB84B18BDD43400E03F52 /* Frameworks */,
+				58CDB84A18BDD43400E03F52 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		58CDB84A18BDD43400E03F52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB84918BDD43400E03F52 /* TQRichTextViewDemo.app */,
+				58CDB86A18BDD43400E03F52 /* TQRichTextViewDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		58CDB84B18BDD43400E03F52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB88518BDD9E400E03F52 /* CoreText.framework */,
+				58CDB84C18BDD43400E03F52 /* Foundation.framework */,
+				58CDB84E18BDD43400E03F52 /* CoreGraphics.framework */,
+				58CDB85018BDD43400E03F52 /* UIKit.framework */,
+				58CDB86B18BDD43400E03F52 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		58CDB85218BDD43400E03F52 /* TQRichTextViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB85B18BDD43400E03F52 /* TQAppDelegate.h */,
+				58CDB85C18BDD43400E03F52 /* TQAppDelegate.m */,
+				58CDB86118BDD43400E03F52 /* TQViewController.h */,
+				58CDB86218BDD43400E03F52 /* TQViewController.m */,
+				58CDB86418BDD43400E03F52 /* Images.xcassets */,
+				58CDB85318BDD43400E03F52 /* Supporting Files */,
+			);
+			path = TQRichTextViewDemo;
+			sourceTree = "<group>";
+		};
+		58CDB85318BDD43400E03F52 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB85418BDD43400E03F52 /* TQRichTextViewDemo-Info.plist */,
+				58CDB85518BDD43400E03F52 /* InfoPlist.strings */,
+				58CDB85818BDD43400E03F52 /* main.m */,
+				58CDB85A18BDD43400E03F52 /* TQRichTextViewDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58CDB87118BDD43400E03F52 /* TQRichTextViewDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB87718BDD43400E03F52 /* TQRichTextViewDemoTests.m */,
+				58CDB87218BDD43400E03F52 /* Supporting Files */,
+			);
+			path = TQRichTextViewDemoTests;
+			sourceTree = "<group>";
+		};
+		58CDB87218BDD43400E03F52 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				58CDB87318BDD43400E03F52 /* TQRichTextViewDemoTests-Info.plist */,
+				58CDB87418BDD43400E03F52 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58CDB88118BDD50000E03F52 /* TQRichTextView */ = {
+			isa = PBXGroup;
+			children = (
+				587B8D6318C04EB200575C9D /* Images */,
+				587B8D5718BF04FE00575C9D /* TQRichTextRun.h */,
+				587B8D5818BF04FE00575C9D /* TQRichTextRun.m */,
+				587B8D5D18C01D9500575C9D /* TQRichTextRunDelegate.h */,
+				587B8D5E18C01D9500575C9D /* TQRichTextRunDelegate.m */,
+				587B8D5A18BF151700575C9D /* TQRichTextRunURL.h */,
+				587B8D5B18BF151700575C9D /* TQRichTextRunURL.m */,
+				587B8D6018C0258A00575C9D /* TQRichTextRunEmoji.h */,
+				587B8D6118C0258A00575C9D /* TQRichTextRunEmoji.m */,
+				58CDB88218BDD56600E03F52 /* TQRichTextView.h */,
+				58CDB88318BDD56600E03F52 /* TQRichTextView.m */,
+			);
+			path = TQRichTextView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		58CDB84818BDD43400E03F52 /* TQRichTextViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58CDB87B18BDD43400E03F52 /* Build configuration list for PBXNativeTarget "TQRichTextViewDemo" */;
+			buildPhases = (
+				58CDB84518BDD43400E03F52 /* Sources */,
+				58CDB84618BDD43400E03F52 /* Frameworks */,
+				58CDB84718BDD43400E03F52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TQRichTextViewDemo;
+			productName = TQRichTextViewDemo;
+			productReference = 58CDB84918BDD43400E03F52 /* TQRichTextViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		58CDB86918BDD43400E03F52 /* TQRichTextViewDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58CDB87E18BDD43400E03F52 /* Build configuration list for PBXNativeTarget "TQRichTextViewDemoTests" */;
+			buildPhases = (
+				58CDB86618BDD43400E03F52 /* Sources */,
+				58CDB86718BDD43400E03F52 /* Frameworks */,
+				58CDB86818BDD43400E03F52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58CDB87018BDD43400E03F52 /* PBXTargetDependency */,
+			);
+			name = TQRichTextViewDemoTests;
+			productName = TQRichTextViewDemoTests;
+			productReference = 58CDB86A18BDD43400E03F52 /* TQRichTextViewDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		58CDB84118BDD43400E03F52 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TQ;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = fuqiang;
+				TargetAttributes = {
+					58CDB86918BDD43400E03F52 = {
+						TestTargetID = 58CDB84818BDD43400E03F52;
+					};
+				};
+			};
+			buildConfigurationList = 58CDB84418BDD43400E03F52 /* Build configuration list for PBXProject "TQRichTextViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 58CDB84018BDD43400E03F52;
+			productRefGroup = 58CDB84A18BDD43400E03F52 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				58CDB84818BDD43400E03F52 /* TQRichTextViewDemo */,
+				58CDB86918BDD43400E03F52 /* TQRichTextViewDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		58CDB84718BDD43400E03F52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				580164FE18C37AF6005F0C8A /* [hei].png in Resources */,
+				587B8D6918C04EB200575C9D /* [smile].png in Resources */,
+				587B8D6718C04EB200575C9D /* [cry].png in Resources */,
+				58CDB86518BDD43400E03F52 /* Images.xcassets in Resources */,
+				58CDB85718BDD43400E03F52 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58CDB86818BDD43400E03F52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58CDB87618BDD43400E03F52 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		58CDB84518BDD43400E03F52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				587B8D6218C0258A00575C9D /* TQRichTextRunEmoji.m in Sources */,
+				587B8D5F18C01D9500575C9D /* TQRichTextRunDelegate.m in Sources */,
+				58CDB86318BDD43400E03F52 /* TQViewController.m in Sources */,
+				58CDB85918BDD43400E03F52 /* main.m in Sources */,
+				587B8D5918BF04FE00575C9D /* TQRichTextRun.m in Sources */,
+				58CDB88418BDD56600E03F52 /* TQRichTextView.m in Sources */,
+				58CDB85D18BDD43400E03F52 /* TQAppDelegate.m in Sources */,
+				587B8D5C18BF151700575C9D /* TQRichTextRunURL.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58CDB86618BDD43400E03F52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58CDB87818BDD43400E03F52 /* TQRichTextViewDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		58CDB87018BDD43400E03F52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 58CDB84818BDD43400E03F52 /* TQRichTextViewDemo */;
+			targetProxy = 58CDB86F18BDD43400E03F52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		58CDB85518BDD43400E03F52 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58CDB85618BDD43400E03F52 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		58CDB87418BDD43400E03F52 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58CDB87518BDD43400E03F52 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		58CDB87918BDD43400E03F52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		58CDB87A18BDD43400E03F52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		58CDB87C18BDD43400E03F52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TQRichTextViewDemo/TQRichTextViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "TQRichTextViewDemo/TQRichTextViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		58CDB87D18BDD43400E03F52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TQRichTextViewDemo/TQRichTextViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "TQRichTextViewDemo/TQRichTextViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		58CDB87F18BDD43400E03F52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TQRichTextViewDemo.app/TQRichTextViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TQRichTextViewDemo/TQRichTextViewDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TQRichTextViewDemoTests/TQRichTextViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		58CDB88018BDD43400E03F52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TQRichTextViewDemo.app/TQRichTextViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TQRichTextViewDemo/TQRichTextViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "TQRichTextViewDemoTests/TQRichTextViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		58CDB84418BDD43400E03F52 /* Build configuration list for PBXProject "TQRichTextViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58CDB87918BDD43400E03F52 /* Debug */,
+				58CDB87A18BDD43400E03F52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58CDB87B18BDD43400E03F52 /* Build configuration list for PBXNativeTarget "TQRichTextViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58CDB87C18BDD43400E03F52 /* Debug */,
+				58CDB87D18BDD43400E03F52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58CDB87E18BDD43400E03F52 /* Build configuration list for PBXNativeTarget "TQRichTextViewDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58CDB87F18BDD43400E03F52 /* Debug */,
+				58CDB88018BDD43400E03F52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 58CDB84118BDD43400E03F52 /* Project object */;
+}
