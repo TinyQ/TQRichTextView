@@ -25,6 +25,7 @@ typedef NS_OPTIONS(NSUInteger, TQRichTextRunTypeList)
 @optional
 - (void)richTextView:(TQRichTextView *)view touchBeginRun:(TQRichTextRun *)run;
 - (void)richTextView:(TQRichTextView *)view touchEndRun:(TQRichTextRun *)run;
+- (void)richTextView:(TQRichTextView *)view touchCanceledRun:(TQRichTextRun *)run;
 
 @end
 

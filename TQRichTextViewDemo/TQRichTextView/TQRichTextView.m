@@ -14,6 +14,7 @@
 
 @property (nonatomic,strong) NSMutableArray *runs;
 @property (nonatomic,strong) NSMutableDictionary *runRectDictionary;
+@property (nonatomic,strong) TQRichTextRun *touchRun;
 
 @end
 
@@ -51,6 +52,7 @@
     //private
     self.runs        = [NSMutableArray array];
     self.runRectDictionary = [NSMutableDictionary dictionary];
+    self.touchRun = nil;
 }
 
 #pragma mark - Draw Rect
@@ -125,7 +127,7 @@
             
             runRect.size.width = CTRunGetTypographicBounds(runRef, CFRangeMake(0,0), &runAscent, &runDescent, NULL);
             runRect = CGRectMake(lineOrigin.x + CTLineGetOffsetForStringIndex(lineRef, CTRunGetStringRange(runRef).location, NULL),
-                                 lineOrigin.y + fabs (runDescent),
+                                 lineOrigin.y ,
                                  runRect.size.width,
                                  runAscent + runDescent);
             
@@ -180,10 +182,10 @@
         [self.runRectDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
             
              CGRect rect = [((NSValue *)key) CGRectValue];
-             TQRichTextRun *run = obj;
              if(CGRectContainsPoint(rect, runLocation))
              {
-                 [weakSelf.delegage richTextView:weakSelf touchBeginRun:run];
+                 self.touchRun = obj;
+                 [weakSelf.delegage richTextView:weakSelf touchBeginRun:obj];
              }
          }];
     }
@@ -208,10 +210,10 @@
         [self.runRectDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
             
             CGRect rect = [((NSValue *)key) CGRectValue];
-            TQRichTextRun *run = obj;
             if(CGRectContainsPoint(rect, runLocation))
             {
-                [weakSelf.delegage richTextView:weakSelf touchEndRun:run];
+                self.touchRun = obj;
+                [weakSelf.delegage richTextView:weakSelf touchEndRun:obj];
             }
         }];
     }
@@ -220,14 +222,32 @@
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
+    
+    CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
+    CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
+    
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
+    {
+        __weak TQRichTextView *weakSelf = self;
+        
+        [self.runRectDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+            
+            CGRect rect = [((NSValue *)key) CGRectValue];
+            if(CGRectContainsPoint(rect, runLocation))
+            {
+                self.touchRun = obj;
+                [weakSelf.delegage richTextView:weakSelf touchCanceledRun:obj];
+            }
+        }];
+    }
 }
 
-//- (UIResponder*)nextResponder
-//{
-//    [super nextResponder];
-//    
-//    return self.runs[0];
-//}
+- (UIResponder*)nextResponder
+{
+    [super nextResponder];
+    
+    return self.touchRun;
+}
 
 #pragma mark - Create Attributed String
 
