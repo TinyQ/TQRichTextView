@@ -166,6 +166,32 @@
     CFRelease(framesetterRef);
 }
 
+#pragma mark - Set
+- (void)setText:(NSString *)text
+{
+    [self setNeedsDisplay];
+    _text = text;
+}
+
+- (void)setFont:(UIFont *)font
+{
+    [self setNeedsDisplay];
+    _font = font;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    [self setNeedsDisplay];
+    _textColor = textColor;
+}
+
+- (void)setLineSpace:(CGFloat)lineSpace
+{
+    [self setNeedsDisplay];
+    _lineSpace = lineSpace;
+    
+}
+
 #pragma mark - Touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
