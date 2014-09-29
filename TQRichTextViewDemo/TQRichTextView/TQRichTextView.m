@@ -300,7 +300,7 @@
     lineSpaceStyle.value =&lineSpace;
     
     CTParagraphStyleSetting settings[] = {lineSpaceStyle,lineBreakMode};
-    CTParagraphStyleRef style = CTParagraphStyleCreate(settings, sizeof(settings));
+    CTParagraphStyleRef style = CTParagraphStyleCreate(settings, sizeof(settings)/sizeof(settings[0]));
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithObject:(__bridge id)style forKey:(id)kCTParagraphStyleAttributeName ];
     CFRelease(style);
     
