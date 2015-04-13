@@ -24,7 +24,7 @@
     callbacks.getDescent = TQRichTextRunDelegateGetDescentCallback;
     callbacks.getWidth   = TQRichTextRunDelegateGetWidthCallback;
     
-    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&callbacks, (__bridge void*)self);
+    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&callbacks, (__bridge_retained void*)self);
     [attributedString addAttribute:(NSString *)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:range];
     CFRelease(runDelegate);
     
