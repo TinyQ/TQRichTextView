@@ -229,7 +229,7 @@
     CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
     CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
-    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchEndRun:)])
     {
         __weak TQRichTextView *weakSelf = self;
         
@@ -252,7 +252,7 @@
     CGPoint location = [(UITouch *)[touches anyObject] locationInView:self];
     CGPoint runLocation = CGPointMake(location.x, self.frame.size.height - location.y);
     
-    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchBeginRun:)])
+    if (self.delegage && [self.delegage respondsToSelector:@selector(richTextView: touchCanceledRun:)])
     {
         __weak TQRichTextView *weakSelf = self;
         
